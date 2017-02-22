@@ -1,0 +1,20 @@
+(* Programm mit Kommentar *)
+
+VAR n,f;
+PROCEDURE fakultaet;
+BEGIN
+	!n;
+	IF n > 0 THEN
+	    BEGIN
+		f := f * n;
+		n := n - 1;
+	       	CALL fakultaet; (* Programm mit Kommentar *)
+		n := n + 1;
+	    END; (* Programm mit Kommentar *)
+END;
+BEGIN
+	?n;
+	f := 1;
+	CALL fakultaet;
+	!f;
+END.

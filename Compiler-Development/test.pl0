@@ -1,0 +1,31 @@
+CONST tooBig = 1, correct = 0;
+VAR input, scrambled, guess, count, tooSmall;
+
+PROCEDURE init;
+	BEGIN
+		tooSmall := -1;
+		guess := -1;
+	END;
+
+
+BEGIN
+	CALL init;
+	?input;
+	scrambled := 14 * (2 * input + 3) / 17;
+
+	WHILE guess # scrambled DO
+	BEGIN
+		IF guess < scrambled THEN
+		BEGIN
+			!tooSmall;
+		END;
+		IF guess > scrambled THEN
+		BEGIN
+			!tooBig;
+		END;
+		count := count + 1;
+	END;
+	!correct;
+	!scrambled;
+	!count;
+END.

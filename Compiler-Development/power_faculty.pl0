@@ -1,0 +1,45 @@
+CONST a=18;
+
+VAR x, y, z;
+
+
+PROCEDURE power;		
+	BEGIN	
+		y := y-1;
+		z := z * x;
+		IF y > 0 THEN CALL power;
+	END;
+
+PROCEDURE faculty;
+
+	VAR i;
+	BEGIN
+		i := 1;
+		WHILE i <= x DO
+		BEGIN
+			z := z * i;
+			i := i + 1;
+		END;
+	END;
+	
+PROCEDURE test;
+
+	VAR p;
+	BEGIN
+		p := 1;
+	END;
+
+
+BEGIN
+	z := 1;
+	?x;
+	?y;
+	CALL power;
+	!z;
+
+
+	z := 1;
+	?x;
+	CALL faculty;
+	!z;
+END.
