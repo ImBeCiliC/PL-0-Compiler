@@ -11,9 +11,13 @@
  #include "AstExpression.h"
  #include "AstIdentifier.h"
 
-    int yydebug = 1;
-    extern int yylineo;
-    AstBlock* root;
+ int yyerror (const char *s)
+ {                                                     
+    printf("%s Zeile: %d\n ", s);
+    return 0;
+ }
+ 
+ AstBlock* root;
 
 %}
 
@@ -59,13 +63,13 @@
 %token t_noteq
 %token t_err
 
-%token<num> t_num
+%token<number> t_num
 %token<ident> t_ident
 
 %type <astBlock> block proc_list procedure
 %type <astIdentifier> const_decl constlist const_id varlist var_decl
 %type <astExpression> factor expression condition term
-%type <astStatement> assignment proc_call read write debug
+%type <astStatement> assignment proc_call read write
 %type <list> statementlist statement while if
 
 %%
@@ -152,7 +156,6 @@ statement :
     |   proc_call                                   { $$.start = $$.end = $1; }
     |   read                                        { $$.start = $$.end = $1; }
     |   write                                       { $$.start = $$.end = $1; }
-    |   debug                                       { $$.start = $$.end = $1; }
     |   if                                          { $$ = $1; }
     |   while                                       { $$ = $1; }
     |   t_begin statementlist t_end                   { $$ = $2; }

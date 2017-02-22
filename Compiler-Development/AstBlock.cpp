@@ -1,5 +1,6 @@
 #include"AstBlock.h"
 
+
 AstBlock::AstBlock(AstIdentifier* con, AstIdentifier* id, AstBlock* subBlock, AstStatement* astStmt)
 {
 	sub = subBlock;
@@ -28,3 +29,4 @@ void AstBlock::print()
 		sub = sub->next;
 	}
 }
+

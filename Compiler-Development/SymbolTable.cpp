@@ -33,7 +33,7 @@ void SymbolTable::setLevel(int lev)
 void SymbolTable::level_up()
 {
     cout << "Level Up" << endl;
-    level++
+    level++;
 
     // refresh max depfh
     if(level > maxDepth)

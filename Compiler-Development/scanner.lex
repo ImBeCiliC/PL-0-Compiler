@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "parser.tab.h"
+
 
 %}
 
@@ -24,7 +26,7 @@
 
  /* Keywords */
 
-"BEGIN"                 {return t_begin;}
+"BEGIN"       return t_begin;
 "CALL"                  {return t_call;}
 "CONST"              {return t_const;}
 "DO"                    {return t_do;}
@@ -43,15 +45,13 @@
 
  /* Numbers */
 [0-9]+      {
-                    yylval.num = atol(yytext);
+                    yylval.number = atoi(yytext);
                     return t_num;
                 }
 
  /* Bezeichner */
 [A-Za-z]([A-Za-z0-9])* {
-                                        ylval.idnt = malloc(strlen(yytext)+1);
-                                        strcpy(yylval.idnt, yytext);
-                                        printf("<%s>\n",yylval.idnt);
+                                        yylval.ident = strdup(yytext);
                                         return t_ident;
                                  }
 
@@ -73,6 +73,12 @@
 ","               {return t_comma;}
 "("               {return t_lbracket;}
 ")"               {return t_rbracket;}
-"#"               {return t_noteq}
+"#"               {return t_noteq;}
  .                 {return t_err;}
 %%
+
+int yywrap()
+{
+    printf("Ende der Eingabe\n");
+    return 1;
+}

@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <typeinfo>
 #include <iostream>
-#include <TableEntry.h>
+#include "TableEntry.h"
 
 using std::cout;
 using std::endl;
@@ -23,7 +23,7 @@ class SymbolTable
 
         public:
             // returns the Instanz of the Singleton
-            static SymbolTable getInstance();
+            static SymbolTable* getInstance();
 
             // inserts new entry into the symboltabel
             void insert(TableEntry*);
